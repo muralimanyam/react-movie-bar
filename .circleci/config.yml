@@ -27,11 +27,16 @@ jobs:
           # If you are using yarn, change the line below from "npm" to "yarn"
           pkg-manager: npm
       - run:
-          name: Install
-          command: npm install
-      - run:
           name: Run tests
-          command: npm test
+          command: |
+                if [ -e yarn.lock ]; then
+                yarn install --frozen-lockfile
+                elif [ -e package-lock.json ]; then
+                npm ci
+                else
+                npm i
+                fi
+                npm run build
 
 workflows:
   # Below is the definition of your workflow.
