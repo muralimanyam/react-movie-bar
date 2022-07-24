@@ -26,9 +26,7 @@ jobs:
       - node/install-packages:
           # If you are using yarn, change the line below from "npm" to "yarn"
           pkg-manager: npm      
-      - run:
-          name: Install
-          command: npm i --package-lock-only
+     
       - run:
           name: Run tests
           command: npm test
